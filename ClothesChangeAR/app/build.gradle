@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.0"
     defaultConfig {
-        applicationId "fyp.kevin.comp.finalyearproject"
+        applicationId "fyp.kevin.comp.clotheschangear"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
@@ -29,17 +29,3 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
-
-configurations.all{
-    resolutionStrategy.eachDependency{ DependencyResolveDetails details ->
-        def requested = details.requested
-        if(requested.group == 'com.android.support'){
-            if(!requested.name.startsWith("multidex"))
-            {
-                details.useVersion '25.3.0'
-            }
-        }
-    }
-}
-
-apply plugin: 'com.google.gms.google-services'

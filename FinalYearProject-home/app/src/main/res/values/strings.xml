@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Final Year Project</string>
+    <string name="facebook_application_id" translatable="false">126625431358525</string>
+    <string name="fb_login_protocol_scheme">fb126625431358525</string>
+    <string name="title_activity_camera">camera</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_22f03b3b4d114c3298a29490cc30cb6346412127.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_8951ba20772511ccee2d244bedac6123d63cc4da.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_2ffdf6ee97925636297d28ffdcbecb6d38184786.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_96bcccf2d7a1626f8bd765d4f81ffcad882e5731.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\exploded-aar\wikitudesdk\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="201cf76307fd8e3b50c3532a66a7913ee4fd4685">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\WikitudeStudioAndroidAppTemplate\app\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-wikitudesdk_001e2f5fd307bfef4d86571e7543a93f13589c6b.jar" />
+    </item>
+
+</items>

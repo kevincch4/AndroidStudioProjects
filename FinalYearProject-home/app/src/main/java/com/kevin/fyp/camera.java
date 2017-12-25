@@ -27,7 +27,7 @@ import com.kevin.fyp.R;
 
 public class camera extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class camera extends AppCompatActivity
         String name = getIntent().getStringExtra("name");
         Log.d("THIS IS NAME:  ", name);
         displayName.setText(name);
-        //String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
+        String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
         if (checkFbLogin.equals("Yes")) {
             String iconUrl = getIntent().getStringExtra("iconUrl");
             Log.d("THIS IS ICONURL:  ", iconUrl);
@@ -107,6 +107,7 @@ public class camera extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
+            String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
             if (checkFbLogin.equals("Yes")) {
                 Toast.makeText(this, "Sharing Function to be implemented", Toast.LENGTH_SHORT).show();
             } else if (checkFbLogin.equals("No")) {

@@ -1,1 +1,0 @@
-Paste World content into this folder. index.html file must be in the root of project's assets-folder

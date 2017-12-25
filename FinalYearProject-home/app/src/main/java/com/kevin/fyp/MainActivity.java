@@ -1,8 +1,11 @@
 package com.kevin.fyp;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -169,11 +172,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClick(View v){
+        Context context = this;
         if(v.getId() == R.id.skipButton){
-            Intent i = new Intent(this, camera.class);
-            i.putExtra("checkFbLogin", "No");
-            i.putExtra("name", "Guest User");
-            startActivity(i);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(true);
+            builder.setTitle("You are logging in as a guest user");
+            builder.setMessage("Guest user cannot share screen capture, are you sure to continue ?");
+            builder.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(MainActivity.this, camera.class);
+                            i.putExtra("checkFbLogin", "No");
+                            i.putExtra("name", "Guest User");
+                            startActivity(i);
+                        }
+                    });
+            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(MainActivity.this, "Back to login page", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+//            Intent i = new Intent(this, camera.class);
+//            i.putExtra("checkFbLogin", "No");
+//            i.putExtra("name", "Guest User");
+//            startActivity(i);
         }
     }
 }

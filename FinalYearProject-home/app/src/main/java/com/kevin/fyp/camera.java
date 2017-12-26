@@ -106,6 +106,8 @@ public class camera extends AppCompatActivity
             Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
             Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_addModel) {
+            Toast.makeText(this, "Add Clothes model", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
             String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
             if (checkFbLogin.equals("Yes")) {

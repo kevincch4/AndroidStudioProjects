@@ -104,6 +104,8 @@ public class camera extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
             Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            final Intent arIntent = new Intent(this, SampleCamActivity.class);
+            startActivity(arIntent);
         } else if (id == R.id.nav_gallery) {
             Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_addModel) {

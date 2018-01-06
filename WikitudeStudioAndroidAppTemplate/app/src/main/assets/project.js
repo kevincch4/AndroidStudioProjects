@@ -12,7 +12,7 @@ var projectJSONOffline =
                     "type": "Model3D",
                     "uri": "augmentation-assets/3284658_kaws/5a40cd720eba16171248f5c9/model.wt3",
                     "targetId": "5a3e892f0eba16171248f474",
-                    "modDat": 1514196611469,
+                    "modDat": 1514884353228,
                     "creDat": 1514196338836,
                     "properties": {
                         "name": "purple",
@@ -24,14 +24,14 @@ var projectJSONOffline =
                             "z": 0
                         },
                         "scale": {
-                            "x": 0.00395,
-                            "y": 0.00395,
-                            "z": 0.00395
+                            "x": 0.0035,
+                            "y": 0.0035,
+                            "z": 0.0035
                         },
                         "translate": {
                             "x": 0,
-                            "y": -0.018,
-                            "z": 0
+                            "y": -0.06,
+                            "z": -0.19256932479216493
                         }
                     },
                     "fileSize": 31702,
@@ -43,33 +43,33 @@ var projectJSONOffline =
     "type": "ImageTargetCollection",
     "wtcFiles": [
         {
-            "url": "augmentation-trackers/4.1/tracker.wtc",
-            "nrOfTargets": 1,
             "version": "4.1",
-            "creDat": 1514048089704
-        },
-        {
+            "nrOfTargets": 1,
             "url": "augmentation-trackers/4.1/tracker.wtc",
-            "nrOfTargets": 1,
+            "creDat": 1514048089704
+        },
+        {
             "version": "5.0",
+            "nrOfTargets": 1,
+            "url": "augmentation-trackers/4.1/tracker.wtc",
             "creDat": 1514048089704
         },
         {
-            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
-            "nrOfTargets": 1,
             "version": "5.1",
+            "nrOfTargets": 1,
+            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
             "creDat": 1514048089704
         },
         {
-            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
-            "nrOfTargets": 1,
             "version": "5.2",
+            "nrOfTargets": 1,
+            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
             "creDat": 1514048089704
         },
         {
-            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
-            "nrOfTargets": 1,
             "version": "5.3",
+            "nrOfTargets": 1,
+            "url": "https://s3-eu-west-1.amazonaws.com/target-manager-live/3839116f14d944c97c6103b0b614de46/5a3e89190eba16171248f473/studio/wtc/4.1/HyGvcZhMG.wtc",
             "creDat": 1514048089704
         }
     ],

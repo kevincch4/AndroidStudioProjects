@@ -25,8 +25,6 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.kevin.fyp.R;
-
 public class MainActivity extends AppCompatActivity {
     LoginButton loginButton;
     CallbackManager callbackManager;

@@ -23,8 +23,6 @@ import com.facebook.login.LoginManager;
 
 import java.io.InputStream;
 
-import com.kevin.fyp.R;
-
 public class camera extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +30,7 @@ public class camera extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_camera);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,13 +102,17 @@ public class camera extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "camera", Toast.LENGTH_SHORT).show();
             final Intent arIntent = new Intent(this, SampleCamActivity.class);
             startActivity(arIntent);
         } else if (id == R.id.nav_gallery) {
-            Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show();
+            //transfer to the activity_gallery page
+            Intent gallery = new Intent (this, com.kevin.fyp.gallery.class);
+            startActivity(gallery);
         } else if (id == R.id.nav_addModel) {
-            Toast.makeText(this, "Add Clothes model", Toast.LENGTH_SHORT).show();
+            //transfer to the download page
+            Intent download = new Intent(this, com.kevin.fyp.download.class);
+            startActivity(download);
         } else if (id == R.id.nav_share) {
             String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
             if (checkFbLogin.equals("Yes")) {

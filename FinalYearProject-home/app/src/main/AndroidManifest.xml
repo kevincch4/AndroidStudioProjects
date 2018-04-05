@@ -73,6 +73,28 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.kevin.fyp.download"
+            android:label="download"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.kevin.fyp.gallery"
+            android:label="gallery"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!-- cam permission activity -->
         <activity android:name="com.kevin.fyp.RuntimePermissionRequestActivity" android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>

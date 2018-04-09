@@ -2,6 +2,7 @@ package com.kevin.fyp;
 
 import android.hardware.SensorManager;
 import android.location.LocationListener;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.kevin.fyp.R;
@@ -18,10 +19,23 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 	/**
 	 * path to the World index.html. Relative paths: Relative to assets-root folder, Absolute paths: Web-Url (http://...) or file-path
 	 */
-	private static final String WORLD_PATH = "index.html";
+	private static String WORLD_PATH = "index.html";
 
 	@Override
 	public String getARchitectWorldPath() {
+		if(CurrentClothes.currentClothes.equals("purple shirt")){
+			Log.d("WORLD PATH","purple ");
+			WORLD_PATH = "index.html";
+		}else if (CurrentClothes.currentClothes.equals("polo.wt3")){
+			Log.d("WORLD PATH","polo ");
+			WORLD_PATH = "polo.html";
+		}else if (CurrentClothes.currentClothes.equals("male_shirt.wt3")){
+			Log.d("WORLD PATH","male");
+			WORLD_PATH = "male_shirt.html";
+		}else if (CurrentClothes.currentClothes.equals("female_shirt.wt3")){
+			Log.d("WORLD PATH","female");
+			WORLD_PATH = "female_shirt.html";
+		}
 		return WORLD_PATH;
 	}
 

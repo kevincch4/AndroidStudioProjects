@@ -10,7 +10,7 @@ var projectJSONOffline =
             "augmentations": [
                 {
                     "type": "Model3D",
-                    "uri": "augmentation-assets/3284658_kaws/5a40cd720eba16171248f5c9/model.wt3",
+                    "uri": "augmentation-assets/3284658_kaws/5a40cd720eba16171248f5c9/male_shirt.wt3",
                     "targetId": "5a3e892f0eba16171248f474",
                     "modDat": 1514884353228,
                     "creDat": 1514196338836,

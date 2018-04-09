@@ -52,9 +52,9 @@ public class gallery extends AppCompatActivity{
                 CurrentClothes.currentClothes = clothes[i];
                 Toast.makeText(getApplicationContext(), clothes[i], Toast.LENGTH_LONG).show();
                 Log.d("CURRENT CLOTHES", CurrentClothes.currentClothes);
-                if(CurrentClothes.currentClothes.equals("polo.wt3")){
-                    Log.d("WORLD PATH","polo ");
-                }
+//                if(CurrentClothes.currentClothes.equals("polo.wt3")){
+//                    Log.d("WORLD PATH","polo ");
+//                }
             }
         });
 

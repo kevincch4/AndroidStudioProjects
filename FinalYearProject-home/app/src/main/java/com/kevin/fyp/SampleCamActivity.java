@@ -24,17 +24,38 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 	@Override
 	public String getARchitectWorldPath() {
 		if(CurrentClothes.currentClothes.equals("purple shirt")){
-			Log.d("WORLD PATH","purple ");
-			WORLD_PATH = "index.html";
+			if(CurrentClothes.currentSize.equals("M")) {
+				WORLD_PATH = "index.html";
+			}else if(CurrentClothes.currentSize.equals("S")){
+				WORLD_PATH = "index_s.html";
+			}else if(CurrentClothes.currentSize.equals("L")){
+				WORLD_PATH = "index_l.html";
+			}
 		}else if (CurrentClothes.currentClothes.equals("polo.wt3")){
-			Log.d("WORLD PATH","polo ");
-			WORLD_PATH = "polo.html";
+			if(CurrentClothes.currentSize.equals("M")) {
+				WORLD_PATH = "polo.html";
+			}else if(CurrentClothes.currentSize.equals("S")){
+				WORLD_PATH = "polo_s.html";
+			}else if(CurrentClothes.currentSize.equals("L")){
+				WORLD_PATH = "polo_l.html";
+			}
 		}else if (CurrentClothes.currentClothes.equals("male_shirt.wt3")){
-			Log.d("WORLD PATH","male");
-			WORLD_PATH = "male_shirt.html";
+			if(CurrentClothes.currentSize.equals("M")) {
+				WORLD_PATH = "male_shirt.html";
+			}else if(CurrentClothes.currentSize.equals("S")){
+				WORLD_PATH = "male_shirt_s.html";
+			}else if(CurrentClothes.currentSize.equals("L")){
+				WORLD_PATH = "male_shirt_l.html";
+			}
+
 		}else if (CurrentClothes.currentClothes.equals("female_shirt.wt3")){
-			Log.d("WORLD PATH","female");
-			WORLD_PATH = "female_shirt.html";
+			if(CurrentClothes.currentSize.equals("M")) {
+				WORLD_PATH = "female_shirt.html";
+			}else if(CurrentClothes.currentSize.equals("S")){
+				WORLD_PATH = "female_shirt_s.html";
+			}else if(CurrentClothes.currentSize.equals("L")){
+				WORLD_PATH = "female_shirt_l.html";
+			}
 		}
 		return WORLD_PATH;
 	}

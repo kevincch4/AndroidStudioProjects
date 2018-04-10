@@ -110,17 +110,23 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 	public void onButtonClick(View v){
 		if(v.getId() == R.id.S){
 			//Toast.makeText(getApplicationContext(),"Size S", Toast.LENGTH_SHORT).show();
-			CurrentClothes.currentSize ="S";
-			finish();
-			startActivity(getIntent());
+			if(!(CurrentClothes.currentSize.equals("S"))) {
+				CurrentClothes.currentSize = "S";
+				finish();
+				startActivity(getIntent());
+			}
 		}else if(v.getId() == R.id.M){
-			CurrentClothes.currentSize ="M";
-			finish();
-			startActivity(getIntent());
+			if(!(CurrentClothes.currentSize.equals("M"))) {
+				CurrentClothes.currentSize = "M";
+				finish();
+				startActivity(getIntent());
+			}
 		}else if(v.getId() == R.id.L){
-			CurrentClothes.currentSize ="L";
-			finish();
-			startActivity(getIntent());
+			if(!(CurrentClothes.currentSize.equals("L"))) {
+				CurrentClothes.currentSize = "L";
+				finish();
+				startActivity(getIntent());
+			}
 		}
 
 	}

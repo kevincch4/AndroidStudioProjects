@@ -1,8 +1,11 @@
 package com.kevin.fyp;
 
+import android.content.Context;
 import android.hardware.SensorManager;
 import android.location.LocationListener;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.kevin.fyp.R;
@@ -97,5 +100,22 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 		// you need to adjust this in case your POIs are more than 50km away from user here while loading or in JS code (compare 'AR.context.scene.cullingDistance')
 		return ArchitectViewHolderInterface.CULLING_DISTANCE_DEFAULT_METERS;
 	}
+
+//	@Override
+//	public void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.sample_cam);
+//	}
+
+	public void onButtonClick(View v){
+		if(v.getId() == R.id.S){
+			//Toast.makeText(getApplicationContext(),"Size S", Toast.LENGTH_SHORT).show();
+			CurrentClothes.currentSize ="S";
+			finish();
+			startActivity(getIntent());
+		}
+
+	}
+
 
 }

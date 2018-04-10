@@ -113,6 +113,14 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 			CurrentClothes.currentSize ="S";
 			finish();
 			startActivity(getIntent());
+		}else if(v.getId() == R.id.M){
+			CurrentClothes.currentSize ="M";
+			finish();
+			startActivity(getIntent());
+		}else if(v.getId() == R.id.L){
+			CurrentClothes.currentSize ="L";
+			finish();
+			startActivity(getIntent());
 		}
 
 	}

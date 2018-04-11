@@ -1,5 +1,6 @@
 package com.kevin.fyp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,6 +35,7 @@ public class camera extends AppCompatActivity
         setContentView(R.layout.activity_camera);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ((AppCompatActivity) this).getSupportActionBar().setTitle("");
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,6 +124,7 @@ public class camera extends AppCompatActivity
             }
         } else if (id == R.id.logout) {
             LoginManager.getInstance().logOut();
+            this.finish();
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
         }
@@ -154,6 +157,29 @@ public class camera extends AppCompatActivity
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    //card click
+    public void onCardClick(View v){
+        if(v.getId() == R.id.camera_card){
+            // Handle the camera action
+            Toast.makeText(this, "camera", Toast.LENGTH_SHORT).show();
+            final Intent arIntent = new Intent(this, SampleCamActivity.class);
+            startActivity(arIntent);
+        } else if(v.getId() == R.id.wardrobe_card){
+            //transfer to the activity_gallery page
+            Intent gallery = new Intent (this, com.kevin.fyp.gallery.class);
+            startActivity(gallery);
+        } else if(v.getId() == R.id.download_card){
+            //transfer to the download page
+            Intent download = new Intent(this, com.kevin.fyp.download.class);
+            startActivity(download);
+        } else if(v.getId() == R.id.logout_card){
+            LoginManager.getInstance().logOut();
+            this.finish();
+            Intent main = new Intent(this, MainActivity.class);
+            startActivity(main);
         }
     }
 }

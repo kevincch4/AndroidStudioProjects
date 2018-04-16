@@ -1,5 +1,6 @@
 package com.kevin.fyp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -52,6 +53,8 @@ public class gallery extends AppCompatActivity{
                 CurrentClothes.currentClothes = clothes[i];
                 Toast.makeText(getApplicationContext(), clothes[i], Toast.LENGTH_LONG).show();
                 Log.d("CURRENT CLOTHES", CurrentClothes.currentClothes);
+                final Intent arIntent = new Intent(getBaseContext(), SampleCamActivity.class);
+                startActivity(arIntent);
 //                if(CurrentClothes.currentClothes.equals("polo.wt3")){
 //                    Log.d("WORLD PATH","polo ");
 //                }

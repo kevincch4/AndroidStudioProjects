@@ -38,34 +38,40 @@ import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class camera extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     CallbackManager callbackManager = CallbackManager.Factory.create();
     ShareDialog shareDialog = new ShareDialog(this);
+    File lastModifiedFile;
+    ArrayList<File> files;
 
-    Target target = new Target() {
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
-
-            if(ShareDialog.canShow(SharePhotoContent.class)){
-                SharePhotoContent content = new SharePhotoContent.Builder()
-                        .addPhoto(sharePhoto).build();
-                shareDialog.show(content);
-                Log.d("BITMAP LOADED","OKOKOKOKOK");
-            }
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
-    };
+//    Target target = new Target() {
+//        @Override
+//        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//            SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+//            Log.d("BUILD Sharephoto","OKOKOKOKOKOK");
+//
+//            if(ShareDialog.canShow(SharePhotoContent.class)){
+//                SharePhotoContent content = new SharePhotoContent.Builder()
+//                        .addPhoto(sharePhoto).build();
+//                shareDialog.show(content);
+//                Log.d("BITMAP LOADED","OKOKOKOKOK");
+//            }
+//        }
+//
+//        @Override
+//        public void onBitmapFailed(Drawable errorDrawable) {
+//            Log.d("FAILED","OKOKOKOKOKOKOK");
+//        }
+//
+//        @Override
+//        public void onPrepareLoad(Drawable placeHolderDrawable) {
+//        }
+//    };
 
 
     @Override
@@ -227,8 +233,28 @@ public class camera extends AppCompatActivity
 //            this.finish();
 //            Intent main = new Intent(this, MainActivity.class);
 //            startActivity(main);
-
             Log.d("PRESSED CARD","OKOKOKOKOK");
+
+            //find last modified file
+            files = new ArrayList<>();
+
+            String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
+            files = listf(d, files);
+
+            File finalmodified = checkLastmod(files);
+
+            Log.d("LAST MODIFIED",finalmodified.getName());
+
+
+            //put file into bitmap
+
+            Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
+            //Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/Screenshot.png");
+
+            SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+            SharePhotoContent content = new SharePhotoContent.Builder()
+                    .addPhoto(sharePhoto).build();
+            shareDialog.show(content);
 
             //create callback
             shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
@@ -251,12 +277,36 @@ public class camera extends AppCompatActivity
                 }
             });
 
-            //load photo to bitmap
-            Picasso.with(this).load("https://koreaboo-cdn.storage.googleapis.com/2017/04/Irene-1.jpg")
-                    .into(target);
-            Log.d("PHOTO LOADED","OKOKOKOKOK");
 
 
         }
+    }
+
+    private File checkLastmod(ArrayList<File> audiofiles) {
+        long latmod = Long.MIN_VALUE;
+        lastModifiedFile = null;
+        for(File file: audiofiles)
+        {
+            if(file.lastModified() > latmod){
+                lastModifiedFile = file;
+                latmod = file.lastModified();
+            }
+        }
+        return lastModifiedFile;
+    }
+
+    private ArrayList<File> listf(String d, ArrayList<File> files) {
+        File directory = new File(d);
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile()) {
+                files.add(file);
+            } else if (file.isDirectory()) {
+                listf(file.getAbsolutePath(), files);
+            }
+        }
+        return files;
     }
 }

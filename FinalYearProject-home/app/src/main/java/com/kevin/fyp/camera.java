@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.util.Log;
 import android.view.View;
@@ -21,17 +23,63 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.facebook.share.Sharer;
+import com.facebook.share.internal.ShareDialogFeature;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.InputStream;
 
 public class camera extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    CallbackManager callbackManager = CallbackManager.Factory.create();
+    ShareDialog shareDialog = new ShareDialog(this);
+
+    Target target = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+
+            if(ShareDialog.canShow(SharePhotoContent.class)){
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto).build();
+                shareDialog.show(content);
+                Log.d("BITMAP LOADED","OKOKOKOKOK");
+            }
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        //callbackManager = CallbackManager.Factory.create();
+        //shareDialog = new ShareDialog(this);
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ((AppCompatActivity) this).getSupportActionBar().setTitle("");
@@ -175,10 +223,40 @@ public class camera extends AppCompatActivity
             Intent download = new Intent(this, com.kevin.fyp.download.class);
             startActivity(download);
         } else if(v.getId() == R.id.logout_card){
-            LoginManager.getInstance().logOut();
-            this.finish();
-            Intent main = new Intent(this, MainActivity.class);
-            startActivity(main);
+//            LoginManager.getInstance().logOut();
+//            this.finish();
+//            Intent main = new Intent(this, MainActivity.class);
+//            startActivity(main);
+
+            Log.d("PRESSED CARD","OKOKOKOKOK");
+
+            //create callback
+            shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                @Override
+                public void onSuccess(Sharer.Result result) {
+                    Log.d("SHARED","OKOKOKOKOK");
+                    Toast.makeText(camera.this, "Share Successful", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancel() {
+                    Toast.makeText(camera.this, "Share Cancel", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+                    Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            //load photo to bitmap
+            Picasso.with(this).load("https://koreaboo-cdn.storage.googleapis.com/2017/04/Irene-1.jpg")
+                    .into(target);
+            Log.d("PHOTO LOADED","OKOKOKOKOK");
+
+
         }
     }
 }

@@ -17,7 +17,6 @@ public class Clothes {
 
 
     public static ArrayList<String> getName() {
-
         return name;
     }
 

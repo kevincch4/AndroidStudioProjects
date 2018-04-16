@@ -58,7 +58,6 @@ public class download extends AppCompatActivity {
 
     private void permission_check() {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
                 return;
@@ -149,7 +148,7 @@ public class download extends AppCompatActivity {
                         try {
                             response = client.newCall(request).execute();
                             float file_size = response.body().contentLength();
-                            //donwload the model using stream
+                            //download the model using stream
                             BufferedInputStream inputStream = new BufferedInputStream(response.body().byteStream());
                             OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory()+"/download/"+selected_file);
 
@@ -164,7 +163,6 @@ public class download extends AppCompatActivity {
                                     progressDialog.show();
                                 }
                             });
-
                             //keep updating the download progress
                             while ( (read_bytes = inputStream.read(data)) != -1 ){
                                 total = total + read_bytes;

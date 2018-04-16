@@ -158,7 +158,7 @@
                     android:id="@+id/download"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Download"
+                    android:text="Import"
                     android:textAlignment="center"
                     android:textColor="#696969"
                     android:textSize="18sp"

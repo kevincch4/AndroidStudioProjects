@@ -307,24 +307,16 @@ public class camera extends AppCompatActivity
             String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
             if(checkFbLogin.equals("Yes")) {
                 //find last modified file
-
-                Log.d("SHare","success");
                 files = new ArrayList<>();
-
                 String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
                 files = listf(d, files);
 
                 File finalmodified = checkLastmod(files);
 
-                Log.d("LAST MODIFIED", finalmodified.getName());
-
-
                 //put file into bitmap
 
                 Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
-                //Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/Screenshot.png");
-
-                SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+                                SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
                 SharePhotoContent content = new SharePhotoContent.Builder()
                         .addPhoto(sharePhoto).build();
                 shareDialog.show(content);
@@ -333,20 +325,15 @@ public class camera extends AppCompatActivity
                 shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
                     @Override
                     public void onSuccess(Sharer.Result result) {
-                        Log.d("SHARED", "OKOKOKOKOK");
                         Toast.makeText(camera.this, "Share Successful", Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onCancel() {
                         Toast.makeText(camera.this, "Share Cancel", Toast.LENGTH_SHORT).show();
-
                     }
-
                     @Override
                     public void onError(FacebookException error) {
                         Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
 
@@ -380,10 +367,10 @@ public class camera extends AppCompatActivity
         }
     }
 
-    private File checkLastmod(ArrayList<File> audiofiles) {
+    private File checkLastmod(ArrayList<File> files) {
         long latmod = Long.MIN_VALUE;
         lastModifiedFile = null;
-        for(File file: audiofiles)
+        for(File file: files)
         {
             if(file.lastModified() > latmod){
                 lastModifiedFile = file;

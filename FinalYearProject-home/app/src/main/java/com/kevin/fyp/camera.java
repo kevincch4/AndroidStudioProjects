@@ -1,6 +1,7 @@
 package com.kevin.fyp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -170,10 +172,77 @@ public class camera extends AppCompatActivity
             startActivity(download);
         } else if (id == R.id.nav_share) {
             String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
-            if (checkFbLogin.equals("Yes")) {
-                Toast.makeText(this, "Sharing Function to be implemented", Toast.LENGTH_SHORT).show();
-            } else if (checkFbLogin.equals("No")) {
-                Toast.makeText(this, "You have to login to share", Toast.LENGTH_SHORT).show();
+            if(checkFbLogin.equals("Yes")) {
+                //find last modified file
+
+                Log.d("SHare","success");
+                files = new ArrayList<>();
+
+                String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
+                files = listf(d, files);
+
+                File finalmodified = checkLastmod(files);
+
+                Log.d("LAST MODIFIED", finalmodified.getName());
+
+
+                //put file into bitmap
+
+                Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
+                //Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/Screenshot.png");
+
+                SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto).build();
+                shareDialog.show(content);
+
+                //create callback
+                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                    @Override
+                    public void onSuccess(Sharer.Result result) {
+                        Log.d("SHARED", "OKOKOKOKOK");
+                        Toast.makeText(camera.this, "Share Successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(camera.this, "Share Cancel", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+            }else{
+                Log.d("LOGIN",checkFbLogin);
+                Log.d("SHARE","Fail");
+                Context context = this;
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCancelable(true);
+                builder.setTitle("You did not use Facebook Login.");
+                builder.setMessage("Would you like to login using your FB account to have the sharing function ?");
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent i = new Intent(camera.this, MainActivity.class);
+                                startActivity(i);
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         } else if (id == R.id.logout) {
             LoginManager.getInstance().logOut();
@@ -228,57 +297,86 @@ public class camera extends AppCompatActivity
             //transfer to the download page
             Intent download = new Intent(this, com.kevin.fyp.download.class);
             startActivity(download);
-        } else if(v.getId() == R.id.logout_card){
+        } else if(v.getId() == R.id.share_card){
 //            LoginManager.getInstance().logOut();
 //            this.finish();
 //            Intent main = new Intent(this, MainActivity.class);
 //            startActivity(main);
-            Log.d("PRESSED CARD","OKOKOKOKOK");
-
-            //find last modified file
-            files = new ArrayList<>();
-
-            String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
-            files = listf(d, files);
-
-            File finalmodified = checkLastmod(files);
-
-            Log.d("LAST MODIFIED",finalmodified.getName());
 
 
-            //put file into bitmap
+            String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
+            if(checkFbLogin.equals("Yes")) {
+                //find last modified file
 
-            Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
-            //Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/Screenshot.png");
+                Log.d("SHare","success");
+                files = new ArrayList<>();
 
-            SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
-            SharePhotoContent content = new SharePhotoContent.Builder()
-                    .addPhoto(sharePhoto).build();
-            shareDialog.show(content);
+                String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
+                files = listf(d, files);
 
-            //create callback
-            shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                @Override
-                public void onSuccess(Sharer.Result result) {
-                    Log.d("SHARED","OKOKOKOKOK");
-                    Toast.makeText(camera.this, "Share Successful", Toast.LENGTH_SHORT).show();
-                }
+                File finalmodified = checkLastmod(files);
 
-                @Override
-                public void onCancel() {
-                    Toast.makeText(camera.this, "Share Cancel", Toast.LENGTH_SHORT).show();
-
-                }
-
-                @Override
-                public void onError(FacebookException error) {
-                    Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
+                Log.d("LAST MODIFIED", finalmodified.getName());
 
 
+                //put file into bitmap
 
+                Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
+                //Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/Screenshot.png");
+
+                SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto).build();
+                shareDialog.show(content);
+
+                //create callback
+                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                    @Override
+                    public void onSuccess(Sharer.Result result) {
+                        Log.d("SHARED", "OKOKOKOKOK");
+                        Toast.makeText(camera.this, "Share Successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(camera.this, "Share Cancel", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+            }else{
+                Log.d("LOGIN",checkFbLogin);
+                Log.d("SHARE","Fail");
+                Context context = this;
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCancelable(true);
+                builder.setTitle("You did not use Facebook Login.");
+                builder.setMessage("Would you like to login using your FB account to have the sharing function ?");
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent i = new Intent(camera.this, MainActivity.class);
+                                startActivity(i);
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
         }
     }
 

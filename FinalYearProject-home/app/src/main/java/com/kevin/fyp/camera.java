@@ -51,6 +51,9 @@ public class camera extends AppCompatActivity
     File lastModifiedFile;
     ArrayList<File> files;
 
+
+
+
 //    Target target = new Target() {
 //        @Override
 //        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -156,22 +159,24 @@ public class camera extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
         if (id == R.id.nav_camera) {
             // Handle the camera action
             Toast.makeText(this, "camera", Toast.LENGTH_SHORT).show();
             final Intent arIntent = new Intent(this, SampleCamActivity.class);
+            arIntent.putExtra("checkFbLogin",checkFbLogin);
             startActivity(arIntent);
         } else if (id == R.id.nav_gallery) {
             //transfer to the activity_gallery page
             Intent gallery = new Intent (this, com.kevin.fyp.gallery.class);
+            gallery.putExtra("checkFbLogin",checkFbLogin);
             startActivity(gallery);
         } else if (id == R.id.nav_addModel) {
             //transfer to the download page
             Intent download = new Intent(this, com.kevin.fyp.download.class);
             startActivity(download);
         } else if (id == R.id.nav_share) {
-            String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
+
             if(checkFbLogin.equals("Yes")) {
                 //find last modified file
 
@@ -284,14 +289,17 @@ public class camera extends AppCompatActivity
 
     //card click
     public void onCardClick(View v){
+        String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
         if(v.getId() == R.id.camera_card){
             // Handle the camera action
             Toast.makeText(this, "camera", Toast.LENGTH_SHORT).show();
             final Intent arIntent = new Intent(this, SampleCamActivity.class);
+            arIntent.putExtra("checkFbLogin",checkFbLogin);
             startActivity(arIntent);
         } else if(v.getId() == R.id.wardrobe_card){
             //transfer to the activity_gallery page
             Intent gallery = new Intent (this, com.kevin.fyp.gallery.class);
+            gallery.putExtra("checkFbLogin",checkFbLogin);
             startActivity(gallery);
         } else if(v.getId() == R.id.download_card){
             //transfer to the download page
@@ -304,7 +312,7 @@ public class camera extends AppCompatActivity
 //            startActivity(main);
 
 
-            String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
+
             if(checkFbLogin.equals("Yes")) {
                 //find last modified file
                 files = new ArrayList<>();

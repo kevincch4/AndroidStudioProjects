@@ -31,7 +31,7 @@ public class gallery extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-
+        final String checkFbLogin = getIntent().getStringExtra("checkFbLogin");
 
         clothes =  Clothes.getName().toArray(clothes);
 
@@ -54,6 +54,7 @@ public class gallery extends AppCompatActivity{
                 Toast.makeText(getApplicationContext(), clothes[i], Toast.LENGTH_LONG).show();
                 Log.d("CURRENT CLOTHES", CurrentClothes.currentClothes);
                 final Intent arIntent = new Intent(getBaseContext(), SampleCamActivity.class);
+                arIntent.putExtra("checkFbLogin",checkFbLogin);
                 startActivity(arIntent);
 //                if(CurrentClothes.currentClothes.equals("polo.wt3")){
 //                    Log.d("WORLD PATH","polo ");

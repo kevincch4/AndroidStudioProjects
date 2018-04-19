@@ -17,7 +17,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_gravity="center_horizontal"
-        android:text="Show shirt model in the web server" />
+        android:text="Refresh shirt model in the web server" />
 
     <ListView
         android:id="@+id/listView"

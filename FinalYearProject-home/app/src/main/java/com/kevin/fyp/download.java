@@ -88,6 +88,48 @@ public class download extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
+
+        //=============================================================================================
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //get the list of item in the web server
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("http://101.78.175.101:20680/test/script.php?list_files").build();
+
+                Response response = null;
+                try {
+                    response = client.newCall(request).execute();
+                    JSONArray array = new JSONArray(response.body().string());
+
+                    //show the list item in web server
+                    for (int i = 0; i < array.length(); i++) {
+                        String file_name = array.getString(i);
+
+                        //this check the item is in the list already or not, remove duplicate
+                        if (files_on_server.indexOf(file_name) == -1) {
+                            files_on_server.add(file_name);
+                        }
+                    }
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            arrayAdapter.notifyDataSetChanged();
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        t.start();
+        //==============================================================================================
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,16 +224,31 @@ public class download extends AppCompatActivity {
                         }
 
                         Log.d("Downloaded", selected_file);
+
                         //update the clothes activity_gallery
                         ArrayList<String> clothes = Clothes.getName();
-                        clothes.add(selected_file);
-
+                        if(!(clothes.contains(selected_file))) {
+                            clothes.add(selected_file);
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    final Toast toast = Toast.makeText(getApplicationContext(), selected_file+" Downloaded" , Toast.LENGTH_LONG);
+                                    toast.show();
+                                }
+                            });
+                        } else{
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    final Toast toast = Toast.makeText(getApplicationContext(), "Clothes already exist in wardrobe" , Toast.LENGTH_LONG);
+                                    toast.show();
+                                }
+                            });
+                        }
 
 
                     }
                 });
                 t.start();
-                Toast.makeText(getApplicationContext(), selected_file+" Downloaded", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), selected_file+" Downloaded", Toast.LENGTH_SHORT).show();
             }
         });
     }

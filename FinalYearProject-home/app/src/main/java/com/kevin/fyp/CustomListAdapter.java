@@ -19,7 +19,7 @@ public class CustomListAdapter extends ArrayAdapter {
     private final String[] clothes;
     private final Integer[] images;
 
-    public CustomListAdapter(@NonNull Context context, @NonNull String[] clothes,@NonNull Integer[] images) {
+    public CustomListAdapter(@NonNull Context context, @NonNull String[] clothes, @NonNull Integer[] images) {
         super(context, R.layout.activity_gallery, clothes);
         this.context = context;
         this.clothes = clothes;
@@ -35,9 +35,21 @@ public class CustomListAdapter extends ArrayAdapter {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
         txtTitle.setText(clothes[position]);
-        imageView.setImageResource(images[position]);
+        if (clothes[position].equals("purple shirt")) {
+            imageView.setImageResource(images[0]);
+        } else if (clothes[position].equals("polo.wt3")) {
+            imageView.setImageResource(images[1]);
+        } else if (clothes[position].equals("male_shirt.wt3")) {
+            imageView.setImageResource(images[2]);
+        } else if (clothes[position].equals("female_shirt.wt3")) {
+            imageView.setImageResource(images[3]);
+        }
+
+        //imageView.setImageResource(images[position]);
 
         return rowView;
 
-    };
+    }
+
+    ;
 }

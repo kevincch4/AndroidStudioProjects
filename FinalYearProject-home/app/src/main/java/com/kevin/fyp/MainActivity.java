@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -164,7 +165,9 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, camera.class);
             i.putExtra("name", profile.getName());
             i.putExtra("checkFbLogin", "Yes");
-            i.putExtra("iconUrl", profile.getProfilePictureUri(200,200).toString());
+            //i.putExtra("iconUrl", profile.getProfilePictureUri(200,200).toString());
+            i.putExtra("iconUrl","https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-9/21731371_1637378906273361_4365971136417680386_n.jpg?_nc_cat=0&oh=12b07651a208d465506a6d4f1bb2f366&oe=5B6808C1");
+            Log.d("URL at main",  profile.getLinkUri().toString());
             startActivity(i);
         }
     }

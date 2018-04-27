@@ -314,15 +314,15 @@ public class camera extends AppCompatActivity
 
 
             if(checkFbLogin.equals("Yes")) {
-                //find last modified file
+                //list out the files
                 files = new ArrayList<>();
                 String d = String.valueOf((Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_PICTURES + "/Screenshots/"));
                 files = listf(d, files);
 
+                //check for the last modified file
                 File finalmodified = checkLastmod(files);
 
                 //put file into bitmap
-
                 Bitmap bitmap = BitmapFactory.decodeFile(finalmodified.getPath());
                                 SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(bitmap).build();
                 SharePhotoContent content = new SharePhotoContent.Builder()
@@ -344,9 +344,8 @@ public class camera extends AppCompatActivity
                         Toast.makeText(camera.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-            }else{
+            }
+            else{
                 Log.d("LOGIN",checkFbLogin);
                 Log.d("SHARE","Fail");
                 Context context = this;
